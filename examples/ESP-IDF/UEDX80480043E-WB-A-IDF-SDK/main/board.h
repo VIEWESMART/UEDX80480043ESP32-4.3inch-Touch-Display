@@ -18,8 +18,8 @@
 #include "esp_lcd_touch_cst816s.h"
 
 /*Please enable the macro definition according to the resolution of your screen*/
-#define VIEWE_Display_43_480272 (1) //If the resolution is 480*272 set to 1
-#define VIEWE_Display_43_800480 (0) //If the resolution is 800*480 set to 1
+#define VIEWE_Display_43_480272 (0) //If the resolution is 480*272 set to 1
+#define VIEWE_Display_43_800480 (1) //If the resolution is 800*480 set to 1
 
 /* LCD size */
 #if VIEWE_Display_43_800480

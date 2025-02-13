@@ -175,11 +175,11 @@ esp_err_t app_lvgl_init(void)
     
 // #if VIEWE_Display_43_800480
     /* Add touch input (for selected screen) */
-    // const lvgl_port_touch_cfg_t touch_cfg = {
-    //     .disp = lvgl_disp,
-    //     .handle = touch_handle,
-    // };
-    // lvgl_touch_indev = lvgl_port_add_touch(&touch_cfg);
+    const lvgl_port_touch_cfg_t touch_cfg = {
+        .disp = lvgl_disp,
+        .handle = touch_handle,
+    };
+    lvgl_touch_indev = lvgl_port_add_touch(&touch_cfg);
 // #endif
 
     return ESP_OK;

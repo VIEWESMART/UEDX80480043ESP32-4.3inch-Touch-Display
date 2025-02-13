@@ -33,15 +33,6 @@ static bool in_display_test_screen = false; // 标记是否在显示测试界面
 static lv_obj_t *display_test_label = NULL; // 显示测试界面的标签
 static int current_color = 0; // 当前颜色索引
 
-/*触摸画线测试*/
-
-// void draw_touch_point(int x, int y) {
-//     // 在触摸点绘制一个小圆点
-//     lv_obj_t *circle = lv_obj_create(lv_scr_act());
-//     lv_obj_set_size(circle, 10, 10); // 设置圆点大小
-//     lv_obj_set_style_bg_color(circle, lv_color_make(0, 0, 0), LV_PART_MAIN); // 黑色
-//     lv_obj_align(circle, LV_ALIGN_TOP_LEFT, x - 5, y - 5); // 调整位置
-// }
 
 void draw_line(int x1, int y1, int x2, int y2) {
     if (line_count >= MAX_LINES) return; // 超过最大线条数量
@@ -77,19 +68,6 @@ void display_coordinates(int x, int y) {
     snprintf(buf, sizeof(buf), "Touch: (%d, %d)", x, y);
     lv_label_set_text(label, buf); // 更新标签文本
 }
-
-// static void touch_event_handler(lv_event_t *e) {
-//     lv_indev_t *indev = lv_indev_get_act();
-//     lv_point_t touch_point;
-
-//     // 获取触摸点
-//     lv_indev_get_point(indev, &touch_point);
-    
-//     if (touch_point.x >= 0 && touch_point.y >= 0) {
-//         draw_touch_point(touch_point.x, touch_point.y); // 绘制触摸点
-//         display_coordinates(touch_point.x, touch_point.y); // 显示坐标
-//     }
-// }
 
 static void touch_event_handler(lv_event_t *e) {
     lv_indev_t *indev = lv_indev_get_act();
@@ -300,12 +278,11 @@ void app_main(void)
     ESP_ERROR_CHECK(app_lcd_init());
     ESP_LOGI(TAG, "LCD HW initialization completed.");
 
-// #if VIEWE_Display_43_800480
     /* Touch initialization */
     // ESP_LOGI(TAG, "Starting Touch initialization...");
-    // ESP_ERROR_CHECK(app_touch_init());
+    ESP_ERROR_CHECK(app_touch_init());
     // ESP_LOGI(TAG, "Touch initialization completed.");
-// #endif
+
 
     /* LVGL initialization */
     ESP_LOGI(TAG, "Starting LVGL initialization...");
