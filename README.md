@@ -1,4 +1,4 @@
-<h1 align = "center">UEDX80480050ESP32-5inch-Touch-Display</h1>
+<h1 align = "center">UEDX80480050ESP32-4.3inch-Touch-Display</h1>
 
 <p align="center" width="80%">
     <img src="image/7inch.jpg" alt="">
@@ -27,7 +27,7 @@
 
 | Product                     | SOC           |  FLASH  |  PSRAM   | Link                   |
 | :------------------------: | :-----------: |:-------: | :---------: | :------------------: |
-| UEDX80480050E-WB-A V1.1   | ESP32S3R8 |   16M   | 8M (Octal SPI) | [VIEWE Mall](https://viewedisplay.com/product/esp32-7-inch-800x480-rgb-ips-tft-display-touch-screen-arduino-lvgl-uart/)  |
+| UEDX80480043E-WB-A V1.1   | ESP32S3R8 |   16M   | 8M (Octal SPI) | [VIEWE Mall](https://viewedisplay.com/product/esp32-7-inch-800x480-rgb-ips-tft-display-touch-screen-arduino-lvgl-uart/)  |
 
 ## Directory
 - [Describe](#describe)
@@ -41,7 +41,7 @@
 
 ## Describe
 
-UEDX80480050ESP32-5inch-Display is a development board with square 5inch 800 * 480 resolution display, based on ESP32S3, suitable for the development of microcontroller projects with display.
+UEDX80480050ESP32-4.3inch-Display is a development board with square 4.3inch 800 * 480 resolution display, based on ESP32S3, suitable for the development of microcontroller projects with display.
 
 
 ## Module
@@ -55,10 +55,10 @@ UEDX80480050ESP32-5inch-Display is a development board with square 5inch 800 * 4
 
 ### 2. Screen
 
-* Size: 7-inch IPS screen
+* Size: 4.3-inch IPS screen
 * Resolution: 800x480px
 * Screen type: IPS
-* Driver chip: EK9716BD3+EK73002AB2
+* Driver chip: ST7262E43-G4
 * Compatibility library:  ESP32_Display_Panel
 * Bus communication protocol: RGB
 
@@ -230,7 +230,7 @@ UEDX80480050ESP32-5inch-Display is a development board with square 5inch 800 * 4
 
 ## Schematic
 <p align="center" width="100%">
-    <img src="Schematic/UEDX80480070E-WB-A%20V1.1%20sch.png" alt="example">
+    <img src="Schematic/4.3.png" alt="example">
 </p>
 
 ## Information
