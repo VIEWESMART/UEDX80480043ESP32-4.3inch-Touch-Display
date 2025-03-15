@@ -1,7 +1,7 @@
 <h1 align = "center">VIEWE ESP32-S3 Smart Display Quick Guide </h1>
 <p align="center">
-    <img src="image/7inch.jpg" alt="">
-    <h1 align = "center" style="font-size: 18px;">Model: UEDX80480050E-WB-A</h1>
+    <img src="image/4_3inch.jpg" alt="">
+    <h1 align = "center" style="font-size: 18px;">Model: UEDX80480043E-WB-A</h1>
 </p>
 
 * **[中文版](./README_CN.md)**
@@ -186,21 +186,21 @@ Note: The model name is determined by the screen resolution and size
 
 ## Schematic
 <p align="center" width="100%">
-    <img src="Schematic/UEDX80480070E-WB-A%20V1.1%20sch.png" alt="example">
+    <img src="image/UEDX80480043E-sch.png" alt="example">
 </p>
 
 ## Information
-[products specification](information/UEDX80480050E-WB-A%20V3.3%20SPEC.pdf)
+[products specification](datasheet/UEDX80480043E-WB-A%20V3.2%20SPEC.pdf)
 
-[Display Datasheet](information/UE050WV-RB40-L070A.pdf)
+[Display Datasheet](datasheet/UE043WV-RB40-L037A.pdf)
 
-[Touch IC Datasheet_EN](information/GT911_EN_Datasheet.pdf)
+[Touch IC Datasheet_EN](datasheet//GT911_EN_Datasheet.pdf)
 
-[Touch IC Datasheet_CN](information/GT911_CN_Datasheet.pdf)
+[Touch IC Datasheet_CN](datasheet/n/GT911_CN_Datasheet.pdf)
 
-[5050RGB-LED](information/C2843785_RGB%2BLED(Built-in%20IC)_XL-5050RGBC-WS2812B_specification_WJ1123912.PDF)
+[5050RGB-LED](datasheet//C2843785_RGB%2BLED(Built-in%20IC)_XL-5050RGBC-WS2812B_specification_WJ1123912.PDF)
 
-[CH340C](information/C84681_USB%20Conversion%20chip_CH340C_specification_WJ1187874.PDF)
+[CH340C](datasheet//C84681_USB%20Conversion%20chip_CH340C_specification_WJ1187874.PDF)
 
 ## firmware download
 1. Open the project file "tools" and locate the ESP32 burning tool. Open it.
