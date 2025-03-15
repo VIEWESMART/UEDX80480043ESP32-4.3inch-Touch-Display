@@ -52,7 +52,7 @@
 * Driver chip: ST7262E43-G4
 * Compatibility library:  ESP32_Display_Panel
 * Bus communication protocol: RGB
-* For more details：[Display Datasheet](information/UE050WV-RB40-L070A.pdf)
+* For more details：[Display Datasheet](datasheet/UE043WV-RB40-L037A.pdf)
   
 Note: The model name is determined by the screen resolution and size
 
@@ -97,7 +97,7 @@ Note: The model name is determined by the screen resolution and size
 5. Configure the development board:
     * Edit the `esp_panel_board_supported_conf.h` file.
     * Enable the macro: `#define ESP_PANEL_BOARD_DEFAULT_USE_SUPPORTED  (1)`
-    * Uncomment the corresponding screen model definition: `#define BOARD_VIEWE_UEDX80480070E_WB_A`
+    * Uncomment the corresponding screen model definition: `#define BOARD_VIEWE_UEDX80480043E_WB_A`
 6. Configure tool options (S3):
    
     | Setting                               | Value                         |
