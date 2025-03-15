@@ -1,8 +1,8 @@
 <h1 align = "center">VIEWE ESP32-S3智能显示屏快速指南</h1>
 
 <div align="center">
-    <img src="image/7inch.jpg" alt="7英寸显示屏">
-    <h1 style="font-size: 18px;">型号: UEDX80480070E-WB-A</h1>
+    <img src="image/4_3inch.jpg" alt="4.3英寸显示屏">
+    <h1 style="font-size: 18px;">型号: UEDX80480043E-WB-A</h1>
 </div>
 
 * **[English Version](./README.md)**
@@ -53,14 +53,14 @@
 - 驱动芯片: EK9716BD3+EK73002AB2
 - 兼容库: ESP32_Display_Panel
 - 总线协议: RGB
-- 详细资料：[屏幕数据手册](information/ALL-UE070WV-RB40-A092A.pdf)
+- 详细资料：[屏幕数据手册](datasheet/UE043WV-RB40-L037A.pdf)
 
 注：型号由屏幕尺寸和分辨率决定
 
 ### 3.触摸模块
 - 芯片: GT911
 - 总线协议: IIC
-- 详细资料：[触摸IC数据手册](information/GT911_CN_Datasheet.pdf)
+- 详细资料：[触摸IC数据手册](datasheet/GT911_CN_Datasheet.pdf)
 
 ## 硬件连接
 - 连接屏幕排线和触摸排线（金色触点朝上）
@@ -96,7 +96,7 @@
 5. 开发板配置：
     * 编辑`esp_panel_board_supported_conf.h`
     * 启用宏定义: `#define ESP_PANEL_BOARD_DEFAULT_USE_SUPPORTED  (1)`
-    * 取消注释屏幕型号定义: `#define BOARD_VIEWE_UEDX80480070E_WB_A`
+    * 取消注释屏幕型号定义: `#define BOARD_VIEWE_UEDX80480043E_WB_A`
 6. 工具配置（S3）：
 
     | 配置项                            | 值                                   |
@@ -181,21 +181,21 @@
 
 ## 电路图
 <div align="center" width="100%">
-    <img src="Schematic/UEDX80480070E-WB-A%20V1.1%20sch.png" alt="电路图">
+    <img src="image/UEDX80480043E-sch.png" alt="电路图">
 </div>
 
 ## 技术资料
-[产品规格书](information/UEDX80480070E-WB-A%20V2.0%20SPEC.pdf)
+[产品规格书](datasheet/UEDX80480043E-WB-A%20V3.2%20SPEC.pdf)
 
-[显示屏数据手册](information/ALL-UE070WV-RB40-A092A.pdf)
+[显示屏数据手册](datasheet/UE043WV-RB40-L037A.pdf)
 
-[触摸IC英文手册](information/GT911_EN_Datasheet.pdf)
+[触摸IC英文手册](datasheet/GT911_EN_Datasheet.pdf)
 
-[触摸IC中文手册](information/GT911_CN_Datasheet.pdf)
+[触摸IC中文手册](datasheet/GT911_CN_Datasheet.pdf)
 
-[5050RGB-LED规格书](information/C2843785_RGB%2BLED(Built-in%20IC)_XL-5050RGBC-WS2812B_specification_WJ1123912.PDF)
+[5050RGB-LED规格书](datasheet/C2843785_RGB%2BLED(Built-in%20IC)_XL-5050RGBC-WS2812B_specification_WJ1123912.PDF)
 
-[CH340C芯片手册](information/C84681_USB%20Conversion%20chip_CH340C_specification_WJ1187874.PDF)
+[CH340C芯片手册](datasheet/C84681_USB%20Conversion%20chip_CH340C_specification_WJ1187874.PDF)
 
 ## 固件下载
 1. 打开tools目录下的ESP32烧录工具
