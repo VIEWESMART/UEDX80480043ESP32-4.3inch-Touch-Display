@@ -3,7 +3,7 @@
 * **[中文版](./README_CN.md)**
   
 <p align="center">
-    <img src="image/4_3inch.jpg" alt="">
+    <img src="image/Main.png" alt="">
     <h1 align = "center" style="font-size: 18px;">Model: UEDX80480043E-WB-A/B</h1>
 </p>
 
@@ -32,8 +32,6 @@ UEDX80480043E-WB-B is a high-performance smart display development board based o
   - On-board Micro SD card slot (SPI interface).
   - Reset and Boot buttons.
 
-For more information on ESP32-S3-WROOM-1, please refer to the following link: [datasheet_en.pdf]()
-
 **Display:**
 - Size: 4.3 Inch
 - Resolution: 800 \* 480
@@ -43,8 +41,6 @@ For more information on ESP32-S3-WROOM-1, please refer to the following link: [d
 - Touch IC: GT911
 - Brightness: 400 cd/m²
 - Touch: CTP
-
-More information about Display can be found here: [Display Specification.pdf]()
 
 **Other:**
 - Operation Temperature：-20~70℃
@@ -68,7 +64,7 @@ With rich connectivity and powerful processing capabilities, the UEDX80480043E-W
 
 ### 2.1 Interface Description
 
-![Board Layout](../../../assets/images/UEP4S070H1024V600C/70E-3.png)
+![Board Layout](image/Layout.png)
 
 1. **Main Control Chip:** ESP32S3-MCN16R8  
    Dual-core processor, up to 240MHz operating frequency.
@@ -143,13 +139,13 @@ With rich connectivity and powerful processing capabilities, the UEDX80480043E-W
 
 ### 2.2 GPIO Definition
 
-![Pin Introduction](../../../assets/images/UEP4S070H1024V600C/pin_introduction.png)
+![Pin Introduction](image/GPIO.png)
 
 ---
 
 ## 3. Functional Block Diagram
 
-*(Functional block diagram illustration)*
+![Pin Introduction](image/Functional.png)
 
 > **Note:** The ESP32-S3 features a 2.4 GHz radio that supports Wi-Fi (802.11 b/g/n) and Bluetooth 5 (LE). Because they share the same RF front-end, Wi-Fi and BLE cannot transmit or receive simultaneously; the radio switches between protocols as needed. This is indicated by “Shared Radio” in the block.
 
@@ -162,7 +158,7 @@ We provide comprehensive support for **Arduino**, **PlatformIO**, and **ESP-IDF*
 > There is no software difference between UEDX80480043E-WB-A and UEDX80480043E-WB-B. Therefore, we will use them uniformly and refer to UEDX80480043E-WB-A as the name of the development board hereinafter.
 
 ### 4.1 Software Examples
-Examples are available in the [GitHub Repository](/examples).
+Examples are available in the [GitHub Repository(examples)](/examples).
 
 | Framework | Example Path | Description |
 | :--- | :--- | :--- |
@@ -194,7 +190,7 @@ Examples are available in the [GitHub Repository](/examples).
     * connect the microcontroller to the computer.If the compilation is correct.
     * Click `upload` in the upper right corner to download.
 
-#### 4.2.3 Arduino Setup
+#### 4.2.3 Arduino Setup([Novice tutorial](https://github.com/VIEWESMART/VIEWE-Tutorial/blob/main/Arduino%20Tutorial/Arduino%20Getting%20Started%20Tutorial.md))
 1.  **Install ESP32 Board Package**:
     * Go to *Tools > Board > Boards Manager*.
     * Search `esp32` by Espressif and install version **3.0.0+**.
@@ -215,6 +211,35 @@ Examples are available in the [GitHub Repository](/examples).
     * Open the `esp_panel_board_supported_conf.h` file in the example
     * Enable this file: change the `ESP_PANEL_BOARD_DEFAULT_USE_SUPPORTED` macro definition to `1`
     * ensure you uncomment: `#define BOARD_VIEWE_UEDX80480043E_WB_A`
+    ```c
+    ...
+    /**
+    * @brief Flag to enable supported board configuration (0/1)
+    *
+    * Set to `1` to enable supported board configuration, `0` to disable
+    */
+    #define ESP_PANEL_BOARD_DEFAULT_USE_SUPPORTED       (1)
+    ...
+    // #define BOARD_VIEWE_SMARTRING
+    // #define BOARD_VIEWE_UEDX24240013_MD50E
+    // #define BOARD_VIEWE_UEDX24320024E_WB_A
+    // #define BOARD_VIEWE_UEDX24320028E_WB_A
+    // #define BOARD_VIEWE_UEDX24320035E_WB_A
+    // #define BOARD_VIEWE_UEDX32480035E_WB_A
+    // #define BOARD_VIEWE_UEDX46460015_MD50ET
+    // #define BOARD_VIEWE_UEDX48270043E_WB_A
+    // #define BOARD_VIEWE_UEDX48480021_MD80E_V2
+    // #define BOARD_VIEWE_UEDX48480021_MD80E
+    // #define BOARD_VIEWE_UEDX48480021_MD80ET
+    // #define BOARD_VIEWE_UEDX48480028_MD80ET
+    // #define BOARD_VIEWE_UEDX48480040E_WB_A
+    // #define BOARD_VIEWE_UEDX80480043E_WB_A
+    // #define BOARD_VIEWE_UEDX80480050E_AC_A
+    #define BOARD_VIEWE_UEDX80480050E_WB_A
+    // #define BOARD_VIEWE_UEDX80480050E_WB_A_2
+    // #define BOARD_VIEWE_UEDX80480070E_WB_A
+    ...
+    ```
 6.  **Configure the example**:
     - [Optional] Edit the macro definitions in the `lvgl_v8_port.h` file
         - **If using `RGB/MIPI-DSI` interface**, change the `LVGL_PORT_AVOID_TEARING_MODE` macro definition to `1`/`2`/`3` to enable the avoid tearing function. After that, change the `LVGL_PORT_ROTATION_DEGREE` macro definition to the target rotation degree
@@ -255,18 +280,18 @@ Examples are available in the [GitHub Repository](/examples).
 ## 5. Related Documents
 
 - [products specification(WB-A)](datasheet/UEDX80480043E-WB-A%20V3.2%20SPEC.pdf)
-- [products specification(WB-B)](datasheet/UEDX80480043E-WB-A%20V3.2%20SPEC.pdf)
-- UEDX80480043E-WB-A Schematic Diagram (PDF)
-- UEDX80480043E-WB-B Schematic Diagram (PDF)
-- 2D Drawing (dwg)
-- Display Specification (PDF)
-- Display Chip Specification (PDF)
+- [products specification(WB-B)](datasheet/UEDX80480043E-WB-B%20V1.0%20SPEC.pdf)
+- [UEDX80480043E-WB-A Schematic Diagram (PDF)](Schematic/UEDX48480043E-WB-A%20V1.3.SCH.pdf)
+- [UEDX80480043E-WB-B Schematic Diagram (PDF)](Schematic/UEDX80480043E-WB-B.pdf)
+- [2D Drawing (dwg)](2D%20drawings/PLCM-DX80480043E-WB-B.dwg)
+- [Display Specification (PDF)](datasheet/UE043WV-RB40-A070A_V1.0.pdf)
+- [Display Chip Specification (PDF)](datasheet/ST7262.pdf)
 - [Touch Chip Specification (Chinese)](datasheet/n/GT911_CN_Datasheet.pdf)
 - [Touch Chip Specification (English)](datasheet//GT911_EN_Datasheet.pdf)
-- ESP32-S3-WROOM-1 Datasheet (Chinese)
-- ESP32-S3-WROOM-1 Datasheet (English)
+- [ESP32-S3-WROOM-1 Datasheet (Chinese)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf)
+- [ESP32-S3-WROOM-1 Datasheet (English)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
 
-## firmware download
+## 6. firmware download
 1. Open the project file "tools" and locate the ESP32 burning tool. Open it.
 
 2. Select the correct burning chip and burning method, then click "OK." As shown in the picture, follow steps 1->2->3->4->5 to burn the program. If the burning is not successful, press and hold the "BOOT-0" button and then download and burn again.
@@ -278,7 +303,7 @@ Examples are available in the [GitHub Repository](/examples).
     <img src="image/11.png" alt="example">
 </p>
 
-## FAQ
+## 7. FAQ
 
 * Q. After reading the above tutorials, I still don't know how to build a programming environment. What should I do?
 * A. If you still don't understand how to build an environment after reading the above tutorials, you can refer to the [VIEWE-FAQ]() document instructions to build it.
