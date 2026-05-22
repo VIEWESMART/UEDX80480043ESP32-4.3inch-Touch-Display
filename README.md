@@ -4,7 +4,6 @@
   
 <p align="center">
     <img src="image/Main.png" alt="">
-    <h1 align = "center" style="font-size: 18px;">Model: UEDX80480043E-WB-A/B</h1>
 </p>
 
 ---
@@ -149,6 +148,7 @@ With rich connectivity and powerful processing capabilities, the UEDX80480043E-W
 
 > **Note:** The ESP32-S3 features a 2.4 GHz radio that supports Wi-Fi (802.11 b/g/n) and Bluetooth 5 (LE). Because they share the same RF front-end, Wi-Fi and BLE cannot transmit or receive simultaneously; the radio switches between protocols as needed. This is indicated by “Shared Radio” in the block.
 
+---
 
 ## 4. Software
 
@@ -291,6 +291,8 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 - [ESP32-S3-WROOM-1 Datasheet (Chinese)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf)
 - [ESP32-S3-WROOM-1 Datasheet (English)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
 
+---
+
 ## 6. firmware download
 1. Open the project file "tools" and locate the ESP32 burning tool. Open it.
 
@@ -302,6 +304,8 @@ Examples are available in the [GitHub Repository(examples)](/examples).
     <img src="image/10.png" alt="example">
     <img src="image/11.png" alt="example">
 </p>
+
+---
 
 ## 7. FAQ
 
