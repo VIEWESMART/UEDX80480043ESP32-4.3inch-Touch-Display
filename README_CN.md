@@ -163,7 +163,8 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
 | 框架 | 示例路径 | 描述 |
 | :--- | :--- | :--- |
 | **Arduino** | `examples/arduino/gui/lvgl_v8` | **LVGL 基准测试**：演示 800x480 UI 渲染。也可直接在 Arduino IDE 中打开。 |
-| **esp-idf** | `examples/esp_idf/lvgl_port` | **lvgl 移植**：在 esp-idf 中移植并使用 lvgl 的示例 |
+| **esp-idf** | `examples/esp_idf/lvgl_v9_demo_4_3inch` | **lvgl 移植**：在 esp-idf 中移植并使用 lvgl 的示例 |
+| **esp-idf** | `examples/esp_idf/squareline_coffee_4_3inch` | **squareline 移植**：在 esp-idf 中移植并使用 squareline 的示例 |
 | **esp-idf** | `examples/esp_idf/sd_card_spi` | **sd_card**：在设备上使用 SD 卡的示例 |
 | **PlatformIO**| `examples/platformio/lvgl_v8_port` | **lvgl v8 移植**：lvgl v8 的使用示例。 |
 
