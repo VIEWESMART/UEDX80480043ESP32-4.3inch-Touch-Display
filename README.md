@@ -163,7 +163,8 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 | Framework | Example Path | Description |
 | :--- | :--- | :--- |
 | **Arduino** | `examples/arduino/gui/lvgl_v8` | **LVGL Benchmark**: Demonstrates 800x480 UI rendering. It can also be directly opened in the Arduino IDE. |
-| **esp-idf** | `examples/esp_idf/lvgl_port` | **lvgl port**: Example of porting and using lvgl in esp-idf |
+| **esp-idf** | `examples/esp_idf/lvgl_v9_demo_4_3inch` | **lvgl port**: Example of porting and using lvgl in esp-idf |
+| **esp-idf** | `examples/esp_idf/squareline_coffee_4_3inch` | **lvgl port**: Example of porting and using squareline in esp-idf |
 | **esp-idf** | `examples/esp_idf/sd_card_spi` | **sd_card**: Examples of using an SD card on a device |
 | **PlatformIO**| `examples/platformio/lvgl_v8_port` | **lvgl v8 port**: Usage example of lvgl v8. |
 
