@@ -1,0 +1,14 @@
+menu "Example Configuration"
+
+    config EXAMPLE_ALBUM_DIR
+        string "Album folder on SD (empty = root)"
+        default "album"
+        help
+            Relative to /sdcard. If the folder is missing or empty, the SD root is scanned.
+
+    config EXAMPLE_ALBUM_INTERVAL_MS
+        int "Slideshow interval (ms), 0 = off"
+        default 5000
+        range 0 60000
+
+endmenu

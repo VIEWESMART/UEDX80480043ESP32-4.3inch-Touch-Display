@@ -1,0 +1,15 @@
+menu "Example Configuration"
+
+    config EXAMPLE_WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            要连接的 2.4 GHz Wi-Fi 名称。也可直接改本目录 sdkconfig.defaults。
+
+    config EXAMPLE_WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            Wi-Fi 密码。开放网络可留空后在 sdkconfig 里把该项改成空字符串。
+
+endmenu

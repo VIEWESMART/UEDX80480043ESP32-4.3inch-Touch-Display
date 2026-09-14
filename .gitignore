@@ -1,0 +1,21 @@
+# Git ignore (board repo)
+
+# ESP-IDF build / component manager
+build/
+managed_components/
+dependencies.lock
+sdkconfig
+sdkconfig.old
+.cache/
+
+# clangd / IDE (keep example source, not local machine paths)
+.clangd
+.vscode/
+.idea/
+*.code-workspace
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+*.swp

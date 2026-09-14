@@ -1,6 +1,6 @@
 <h1 align = "center">VIEWE 4.3" 800*480 ESP32-S3 Smart Display Quick Guide </h1>
 
-* **[中文版](./README_CN.md)**
+* **[中文版](./README_CN.md)** · **[Changelog](./CHANGELOG.md)** / **[变更说明](./CHANGELOG_CN.md)**
   
 <p align="center">
     <img src="image/Main.png" alt="">
@@ -163,16 +163,23 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 | Framework | Example Path | Description |
 | :--- | :--- | :--- |
 | **Arduino** | `examples/arduino/gui/lvgl_v8` | **LVGL Benchmark**: Demonstrates 800x480 UI rendering. It can also be directly opened in the Arduino IDE. |
-| **esp-idf** | `examples/esp_idf/lvgl_v9_demo_4_3inch` | **lvgl port**: Example of porting and using lvgl in esp-idf |
-| **esp-idf** | `examples/esp_idf/squareline_coffee_4_3inch` | **lvgl port**: Example of porting and using squareline in esp-idf |
-| **esp-idf** | `examples/esp_idf/sd_card_spi` | **sd_card**: Examples of using an SD card on a device |
+| **esp-idf** | [`examples/esp_idf/01_i2c_scan`](examples/esp_idf/01_i2c_scan) | Scan GT911 on I2C (`0x5D` / `0x14`) |
+| **esp-idf** | [`examples/esp_idf/02_wifi`](examples/esp_idf/02_wifi) | Wi-Fi STA (2.4 GHz; SSID/password in that example) |
+| **esp-idf** | [`examples/esp_idf/03_ble`](examples/esp_idf/03_ble) | BLE GATT server, name `UEDX-4.3-S3`, Just Works pairing |
+| **esp-idf** | [`examples/esp_idf/04_sd`](examples/esp_idf/04_sd) | SPI Micro SD mount / list / read-write |
+| **esp-idf** | [`examples/esp_idf/05_display_lvgl_port`](examples/esp_idf/05_display_lvgl_port) | RGB LCD + GT911 + LVGL Widgets via `esp_lvgl_adapter` |
+| **esp-idf** | [`examples/esp_idf/06_album`](examples/esp_idf/06_album) | Photo album from SD (`jpg` / `png` / `bmp`) |
+| **esp-idf** | [`examples/esp_idf/07_squareline_coffee`](examples/esp_idf/07_squareline_coffee) | SquareLine coffee-machine UI (800×480) |
+| **esp-idf** | [`examples/esp_idf/08_gui_guider_monitoring`](examples/esp_idf/08_gui_guider_monitoring) | GUI Guider building-monitor UI (800×480) |
 | **PlatformIO**| `examples/platformio/lvgl_v8_port` | **lvgl v8 port**: Usage example of lvgl v8. |
+
+IDF examples are standalone projects. They pull BSP **[viewesmart/bsp_uedx80480043_wb_a](https://components.espressif.com/components/viewesmart/bsp_uedx80480043_wb_a)** (`^1.0.0`) from the Espressif Component Registry. First-time VS Code + EIM steps: [examples/esp_idf/README.md](examples/esp_idf/README.md).
 
 ### 4.2 Getting Started
 
 #### 4.2.1 Preparation
 * **Hardware**: UEDX80480043E-WB-A or UEDX80480043E-WB-B Board, USB-C Cable.
-* **Software**: VS Code (ESP-IDF v5.3+) or Arduino IDE (v2.0+) or VS Code (PlatformIO).
+* **Software**: VS Code + ESP-IDF **v5.5+** (install with EIM), or Arduino IDE (v2.0+), or VS Code (PlatformIO).
 * **Library**: The following libraries are needed for Arduino IDE and PlatformIO
 
     |Libraries|version|Description|
@@ -182,14 +189,36 @@ Examples are available in the [GitHub Repository(examples)](/examples).
     |`esp-lib-utils`| `Arduino automatic selection` |The dependency library of `ESP32_Display_Panel` should be selected for installation together during the installation process.|
     |`lvgl`| `8.4.0` | A free and open-source embedded graphics library. |
 
-#### 4.2.2  ESP-IDF Setup
-1.  **Open platformio example**
-    * go to GitHub to download the program. You can download the main branch by clicking on the "<> Code" with green text
-    * Open the example using VS Code(ESP-IDF)
-2.  **Compile and upload**:
-    * Click `build` in the upper right corner to compile.
-    * connect the microcontroller to the computer.If the compilation is correct.
-    * Click `upload` in the upper right corner to download.
+#### 4.2.2 ESP-IDF Setup
+
+IDF examples are under [`examples/esp_idf`](examples/esp_idf). Each numbered folder is its **own** project (do not open `examples/` or `examples/esp_idf` as the workspace). The board BSP comes from the Component Registry; you do not need a local BSP copy. Full beginner guide: [examples/esp_idf/README.md](examples/esp_idf/README.md).
+
+1.  **Install ESP-IDF 5.5 or newer (EIM + VS Code)**
+    * Install [VS Code](https://code.visualstudio.com/).
+    * Extensions: search `ESP-IDF`, install the one published by **Espressif**.
+    * F1 → **ESP-IDF: Open ESP-IDF Installation Manager** → **Easy Installation**.
+    * Pick **ESP-IDF 5.5 or newer** (this BSP needs `idf >= 5.5`), for example 5.5.4.
+    * The bottom status bar should show `v5.5.x`, not “IDF is not configured”.
+2.  **Open one example folder**
+    * **File → Open Folder** and select only one project, e.g. `examples/esp_idf/05_display_lvgl_port`.
+3.  **Set target and port**
+    * Connect USB-C (data-capable cable).
+    * F1 → **ESP-IDF: Set Espressif Device Target** → **esp32s3**.
+    * F1 → **ESP-IDF: Select Port to Use**.
+4.  **Build, flash, monitor**
+    * F1 → **ESP-IDF: Build, Flash and Start a Monitor on Your Device** (`Ctrl+E` then `D`).
+    * The first build downloads the BSP into that example’s `managed_components/`.
+    * Success: terminal shows `Project build complete` and no red `FAILED`. Leave the monitor with `Ctrl+]`.
+
+Command line (after IDF is exported):
+
+```
+cd examples/esp_idf/05_display_lvgl_port
+idf.py set-target esp32s3
+idf.py build flash monitor
+```
+
+For a 480×272 module (UEDX48270043): menuconfig → **Component config → Board Support Package → Display → 4.3" LCD panel**. Do not run `07` / `08` on 480×272 — those UIs are 800×480.
 
 #### 4.2.3 Arduino Setup([Novice tutorial](https://github.com/VIEWESMART/VIEWE-Tutorial/blob/main/Arduino%20Tutorial/Arduino%20Getting%20Started%20Tutorial.md))
 1.  **Install ESP32 Board Package**:
@@ -287,8 +316,8 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 - [2D Drawing (dwg)](2D%20drawings/PLCM-DX80480043E-WB-B.dwg)
 - [Display Specification (PDF)](datasheet/UE043WV-RB40-A070A_V1.0.pdf)
 - [Display Chip Specification (PDF)](datasheet/ST7262.pdf)
-- [Touch Chip Specification (Chinese)](datasheet/n/GT911_CN_Datasheet.pdf)
-- [Touch Chip Specification (English)](datasheet//GT911_EN_Datasheet.pdf)
+- [Touch Chip Specification (Chinese)](datasheet/GT911_CN_Datasheet.pdf)
+- [Touch Chip Specification (English)](datasheet/GT911_EN_Datasheet.pdf)
 - [ESP32-S3-WROOM-1 Datasheet (Chinese)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf)
 - [ESP32-S3-WROOM-1 Datasheet (English)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
 
@@ -299,7 +328,7 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 
 2. Select the correct burning chip and burning method, then click "OK." As shown in the picture, follow steps 1->2->3->4->5 to burn the program. If the burning is not successful, press and hold the "BOOT-0" button and then download and burn again.
 
-3. Burn the file in the root directory of the project file "[firmware](./firmware/)" file,There is a description of the firmware file version inside, just choose the appropriate version to download.
+3. Burn a file from [`firmware/`](./firmware/). File names still match the **old** IDF example folders; see [firmware/README.md](firmware/README.md) for the mapping to `05` / `07` / `08`. Those images were built before the registry-BSP rewrite — for the latest examples, build from [`examples/esp_idf`](examples/esp_idf).
 
 <p align="center" width="100%">
     <img src="image/10.png" alt="example">
@@ -311,7 +340,7 @@ Examples are available in the [GitHub Repository(examples)](/examples).
 ## 7. FAQ
 
 * Q. After reading the above tutorials, I still don't know how to build a programming environment. What should I do?
-* A. If you still don't understand how to build an environment after reading the above tutorials, you can refer to the [VIEWE-FAQ]() document instructions to build it.
+* A. If you still don't understand how to build an environment after reading the above tutorials, you can refer to the [VIEWE-FAQ](https://github.com/VIEWESMART/VIEWE-FAQ) document.
 
 <br />
 

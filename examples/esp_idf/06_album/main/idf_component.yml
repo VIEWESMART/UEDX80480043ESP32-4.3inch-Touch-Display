@@ -1,0 +1,5 @@
+dependencies:
+  viewesmart/bsp_uedx80480043_wb_a: "^1.0.0"
+  lvgl/lvgl:
+    version: "^9"
+    public: true

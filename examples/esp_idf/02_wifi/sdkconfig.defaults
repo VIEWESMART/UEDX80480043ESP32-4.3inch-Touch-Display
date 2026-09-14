@@ -1,0 +1,37 @@
+# Board: UEDX80480043E-WB (ESP32-S3 N16R8). Kept in this folder so the
+# example does not depend on files outside the project. BSP comes from
+# the Component Registry: viewesmart/bsp_uedx80480043_wb_a
+CONFIG_IDF_TARGET="esp32s3"
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_FREERTOS_HZ=1000
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
+
+# PSRAM: 8 MB OPI
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_XIP_FROM_PSRAM=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_MEMTEST=n
+CONFIG_ESP32S3_INSTRUCTION_CACHE_32KB=y
+CONFIG_ESP32S3_DATA_CACHE_64KB=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+
+# Bounce ISR in IRAM: avoid PSRAM XIP stalls while refilling RGB bounce buffers.
+CONFIG_LCD_RGB_ISR_IRAM_SAFE=y
+CONFIG_LCD_RGB_RESTART_IN_VSYNC=y
+
+# ============================================================
+# Edit these two lines to join Wi-Fi. Keep the quotes.
+# Or: idf.py menuconfig -> Example Configuration
+# If sdkconfig already exists, delete it or these defaults will not apply.
+# ============================================================
+CONFIG_EXAMPLE_WIFI_SSID="myssid"
+CONFIG_EXAMPLE_WIFI_PASSWORD="mypassword"
+
+CONFIG_BT_ENABLED=n

@@ -1,6 +1,6 @@
 <h1 align = "center">VIEWE 4.3" 800*480 ESP32-S3 智能显示屏快速指南 </h1>
 
-* **[English](./README.md)**
+* **[English](./README.md)** · **[变更说明](./CHANGELOG_CN.md)** / **[Changelog](./CHANGELOG.md)**
 
 <p align="center">
     <img src="image/Main.png" alt="">
@@ -163,16 +163,23 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
 | 框架 | 示例路径 | 描述 |
 | :--- | :--- | :--- |
 | **Arduino** | `examples/arduino/gui/lvgl_v8` | **LVGL 基准测试**：演示 800x480 UI 渲染。也可直接在 Arduino IDE 中打开。 |
-| **esp-idf** | `examples/esp_idf/lvgl_v9_demo_4_3inch` | **lvgl 移植**：在 esp-idf 中移植并使用 lvgl 的示例 |
-| **esp-idf** | `examples/esp_idf/squareline_coffee_4_3inch` | **squareline 移植**：在 esp-idf 中移植并使用 squareline 的示例 |
-| **esp-idf** | `examples/esp_idf/sd_card_spi` | **sd_card**：在设备上使用 SD 卡的示例 |
+| **esp-idf** | [`examples/esp_idf/01_i2c_scan`](examples/esp_idf/01_i2c_scan) | 扫描 GT911 I2C（`0x5D` / `0x14`） |
+| **esp-idf** | [`examples/esp_idf/02_wifi`](examples/esp_idf/02_wifi) | Wi-Fi STA（2.4 GHz；SSID/密码在该示例中配置） |
+| **esp-idf** | [`examples/esp_idf/03_ble`](examples/esp_idf/03_ble) | BLE GATT 服务器，设备名 `UEDX-4.3-S3`，Just Works 配对 |
+| **esp-idf** | [`examples/esp_idf/04_sd`](examples/esp_idf/04_sd) | SPI Micro SD 挂载 / 列目录 / 读写 |
+| **esp-idf** | [`examples/esp_idf/05_display_lvgl_port`](examples/esp_idf/05_display_lvgl_port) | RGB 屏 + GT911 + LVGL Widgets（`esp_lvgl_adapter`） |
+| **esp-idf** | [`examples/esp_idf/06_album`](examples/esp_idf/06_album) | 从 SD 读图的电子相册（`jpg` / `png` / `bmp`） |
+| **esp-idf** | [`examples/esp_idf/07_squareline_coffee`](examples/esp_idf/07_squareline_coffee) | SquareLine 咖啡机界面（800×480） |
+| **esp-idf** | [`examples/esp_idf/08_gui_guider_monitoring`](examples/esp_idf/08_gui_guider_monitoring) | GUI Guider 楼宇监控界面（800×480） |
 | **PlatformIO**| `examples/platformio/lvgl_v8_port` | **lvgl v8 移植**：lvgl v8 的使用示例。 |
+
+IDF 示例都是独立工程。BSP 从乐鑫组件仓库拉取 **[viewesmart/bsp_uedx80480043_wb_a](https://components.espressif.com/components/viewesmart/bsp_uedx80480043_wb_a)**（`^1.0.0`）。第一次用 VS Code + EIM 的步骤见 [examples/esp_idf/README_CN.md](examples/esp_idf/README_CN.md)。
 
 ### 4.2 入门指南
 
 #### 4.2.1 准备工作
 * **硬件**：UEDX80480043E-WB-A 或 UEDX80480043E-WB-B 开发板，USB-C 数据线。
-* **软件**：VS Code (ESP-IDF v5.3+) 或 Arduino IDE (v2.0+) 或 VS Code (PlatformIO)。
+* **软件**：VS Code + ESP-IDF **v5.5+**（用 EIM 安装），或 Arduino IDE (v2.0+)，或 VS Code (PlatformIO)。
 * **库**：Arduino IDE 和 PlatformIO 需要以下库
 
     | 库 | 版本 | 描述 |
@@ -183,13 +190,35 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
     |`lvgl`| `8.4.0` | 免费开源的嵌入式图形库。 |
 
 #### 4.2.2 ESP-IDF 环境搭建
-1.  **打开 platformio 示例**
-    * 前往 GitHub 下载程序。可点击绿色的 "<> Code" 按钮下载主分支。
-    * 使用 VS Code (ESP-IDF) 打开示例。
-2.  **编译和上传**:
-    * 点击右上角的 `build` 进行编译。
-    * 将单片机连接到电脑。如果编译正确，
-    * 点击右上角的 `upload` 进行下载。
+
+IDF 示例在 [`examples/esp_idf`](examples/esp_idf)。每个带编号的文件夹都是**独立工程**（不要把 `examples/` 或 `examples/esp_idf` 当成工作区打开）。板级 BSP 来自乐鑫组件仓库，不需要再放一份本地 BSP。完整小白教程：[examples/esp_idf/README_CN.md](examples/esp_idf/README_CN.md)。
+
+1.  **安装 ESP-IDF 5.5 或更新（EIM + VS Code）**
+    * 安装 [VS Code](https://code.visualstudio.com/)。
+    * 扩展搜索 `ESP-IDF`，安装 **Espressif** 出品的那一个。
+    * F1 → **ESP-IDF: Open ESP-IDF Installation Manager** → **Easy Installation**。
+    * IDF 版本选 **5.5 或更新**（本 BSP 要求 `idf >= 5.5`），例如 5.5.4。
+    * 最底下状态栏应出现 `v5.5.x`，而不是 *IDF is not configured*。
+2.  **只打开某一个示例文件夹**
+    * **文件 → 打开文件夹**，只选一个工程，例如 `examples/esp_idf/05_display_lvgl_port`。
+3.  **选择芯片和串口**
+    * 用能传数据的 USB-C 接线。
+    * F1 → **ESP-IDF: Set Espressif Device Target** → **esp32s3**。
+    * F1 → **ESP-IDF: Select Port to Use**。
+4.  **编译、烧录、监视**
+    * F1 → **ESP-IDF: Build, Flash and Start a Monitor on Your Device**（`Ctrl+E` 再按 `D`）。
+    * 第一次编译会把 BSP 下载到该示例的 `managed_components/`。
+    * 成功：终端出现 `Project build complete`，没有红色 `FAILED`。退出监视按 `Ctrl+]`。
+
+命令行（已导出 IDF 环境时）：
+
+```
+cd examples/esp_idf/05_display_lvgl_port
+idf.py set-target esp32s3
+idf.py build flash monitor
+```
+
+480×272 模组（UEDX48270043）：menuconfig → **Component config → Board Support Package → Display → 4.3" LCD panel**。`07` / `08` 的界面按 800×480 设计，不要在 480×272 上硬跑。
 
 #### 4.2.3 Arduino 环境搭建([新手教程](https://github.com/VIEWESMART/VIEWE-Tutorial/blob/main/Arduino%20Tutorial/Arduino%20Getting%20Started%20Tutorial.md))
 1.  **安装 ESP32 开发板包**:
@@ -286,8 +315,8 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
 - [2D 图纸 (dwg)](2D%20drawings/PLCM-DX80480043E-WB-B.dwg)
 - [显示屏规格书 (PDF)](datasheet/UE043WV-RB40-A070A_V1.0.pdf)
 - [显示驱动芯片规格书 (PDF)](datasheet/ST7262.pdf)
-- [触摸芯片规格书 (中文)](datasheet/n/GT911_CN_Datasheet.pdf)
-- [触摸芯片规格书 (英文)](datasheet//GT911_EN_Datasheet.pdf)
+- [触摸芯片规格书 (中文)](datasheet/GT911_CN_Datasheet.pdf)
+- [触摸芯片规格书 (英文)](datasheet/GT911_EN_Datasheet.pdf)
 - [ESP32-S3-WROOM-1 数据手册 (中文)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf)
 - [ESP32-S3-WROOM-1 数据手册 (英文)](datasheet/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
 
@@ -298,7 +327,7 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
 
 2. 选择正确的烧录芯片和烧录方式，然后点击“确定”。如图所示，按照步骤 1->2->3->4->5 烧录程序。如果烧录不成功，请按住“BOOT-0”按钮，然后再次下载烧录。
 
-3. 烧录项目根目录下的“[firmware](./firmware/)”文件夹中的文件，里面有固件版本说明，选择合适的版本下载即可。
+3. 烧录 [`firmware/`](./firmware/) 里的文件。文件名仍是**旧** IDF 示例目录名，与当前 `05` / `07` / `08` 的对应关系见 [firmware/README_CN.md](firmware/README_CN.md)。这些镜像来自改版前工程；要跑最新示例请在 [`examples/esp_idf`](examples/esp_idf) 自行编译。
 
 <p align="center" width="100%">
     <img src="image/10.png" alt="example">
@@ -310,7 +339,7 @@ UEDX80480043E-WB-B 是一款基于 ESP32-S3 的高性能智能显示开发板，
 ## 7. 常见问题
 
 * Q. 阅读以上教程后，我仍然不知道如何搭建编程环境，该怎么办？
-* A. 如果阅读以上教程后仍不清楚如何搭建环境，可以参考 [VIEWE-FAQ]() 文档说明进行搭建。
+* A. 如果阅读以上教程后仍不清楚如何搭建环境，可以参考 [VIEWE-FAQ](https://github.com/VIEWESMART/VIEWE-FAQ) 文档说明进行搭建。
 
 <br />
 
